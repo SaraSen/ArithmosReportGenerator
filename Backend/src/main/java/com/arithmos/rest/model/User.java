@@ -1,12 +1,12 @@
 package com.arithmos.rest.model;
 
-public class Employee {
+public class User {
 
-    public Employee() {
+    public User() {
 
     }
 
-    public Employee(Integer id, String username, String password, String role) {
+    public User(Integer id, String username, String password, String role) {
         super();
         this.id = id;
         this.username = username;

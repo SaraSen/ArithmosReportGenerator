@@ -5,14 +5,14 @@ import java.sql.ResultSet;
 import org.springframework.stereotype.Repository;
 
 import com.arithmos.rest.db.DB;
-import com.arithmos.rest.model.Employee;
+import com.arithmos.rest.model.User;
 
 import com.google.gson.JsonObject;
 
 @Repository
-public class EmployeeDAO {
+public class UserDAO {
 	
-	public JsonObject logEmployee(Employee employee) {
+	public JsonObject logEmployee(User employee) {
 		JsonObject success = new JsonObject();
 
 //		try {
