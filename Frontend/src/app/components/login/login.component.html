@@ -1,0 +1,24 @@
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img style="border-radius:50%" src="https://p7.hiclipart.com/preview/169/979/823/login-computer-icons-iconfinder-website-login-key-icon-lock-locked-login-thumbnail.jpg" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form #loginForm = "ngForm" (ngSubmit)="loginUser">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="username" [(ngModel)]="user.userName">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" [(ngModel)]="user.password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>
