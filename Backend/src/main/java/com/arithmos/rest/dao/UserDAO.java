@@ -16,8 +16,8 @@ public class UserDAO {
 		JsonObject success = new JsonObject();
 
 		try {
-		ResultSet rs = DB.search("SELECT * FROM `user` where `username` = " + employee.getUsername()
-					+ " AND password =" + employee.getPassword() + "");
+		ResultSet rs = DB.search("SELECT * FROM `User` where `Username` = " + employee.getUsername()
+					+ " AND Password =" + employee.getPassword() + "");
 			if (rs.next()) {
 				success.addProperty("verified", "true");
 			}
