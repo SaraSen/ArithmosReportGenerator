@@ -6,9 +6,11 @@ public class Report {
 
 	}
 
-	public Report(String team, String assigneee, String jiraID, String taskDesc, String comment, String onCall,
+	public Report(String date, String team, String assigneee, String jiraID, String taskDesc, String comment, String onCall,
 			String deliveryDate, String status, String blockers) {
 		super();
+		
+		this.date = date;
 		this.team = team;
 		this.assigneee = assigneee;
 		this.jiraID = jiraID;
@@ -21,6 +23,7 @@ public class Report {
 
 	}
 
+	private String date;
 	private String team;
 	private String assigneee;
 	private String jiraID;
@@ -30,6 +33,16 @@ public class Report {
 	private String deliveryDate;
 	private String status;
 	private String blockers;
+	
+		
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public String getTeam() {
 		return team;
 	}
@@ -70,7 +83,7 @@ public class Report {
 		this.comment = comment;
 	}
 
-	public String isOnCall() {
+	public String getOnCall() {
 		return onCall;
 	}
 
