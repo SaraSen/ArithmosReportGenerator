@@ -12,8 +12,9 @@ import com.google.gson.JsonObject;
 @Repository
 public class UserDAO {
 	
-	public JsonObject logEmployee(User employee) {
+	public User logEmployee(User employee) {
 		JsonObject success = new JsonObject();
+		boolean isValidate=false;
 
 //		try {
 //			ResultSet rs = DB.search("SELECT * FROM `user` where `usernmae` = " + employee.getUsername()
@@ -26,13 +27,15 @@ public class UserDAO {
 //			success.addProperty("verified", "false");
 //		}
 
-		if (!(employee.getUsername().equals("") && employee.getPassword().equals(""))) {
-			success.addProperty("verified", true);
+		if (employee.getUsername().equals("a") && employee.getPassword().equals("a")) {
+			User user = new User();
+			user.setId(1);
+			user.setRole("admin");
+			user.setUsername("abc");
+			return user;
 		} else {
-			success.addProperty("verified", false);
+			return null;
 		}
-
-		return success;
 
 	}
 }

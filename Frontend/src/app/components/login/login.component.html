@@ -5,14 +5,17 @@
   
       <!-- Icon -->
       <div class="fadeIn first">
-        <img style="border-radius:50%" src="https://lh3.googleusercontent.com/proxy/9CNXARE8J-fKviSKlLi8fYNgTuVRhWiDcy90VHtD8KfHxk9f0nvnHlWMTZlsuoZ_AYQlUVfCuCchC3glw-IpKfOaM3HtAOI" id="icon" alt="User Icon" />
+        <img style="border-radius:50% ; width: 40%;" src="https://lh3.googleusercontent.com/proxy/9CNXARE8J-fKviSKlLi8fYNgTuVRhWiDcy90VHtD8KfHxk9f0nvnHlWMTZlsuoZ_AYQlUVfCuCchC3glw-IpKfOaM3HtAOI " id="icon" alt="User Icon" />
       </div>
   
       <!-- Login Form -->
-      <form #loginForm = "ngForm" (ngSubmit)="loginUser">
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="username" [(ngModel)]="user.userName">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" [(ngModel)]="user.password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
+      <form [formGroup] = "form" (ngSubmit)="onSubmit()">
+        <input matInput formControlName="username" type="text" id="login" class="fadeIn second" name="login" placeholder="username" [(ngModel)]="user.username">
+        <input matInput formControlName="password" type="password" id="password" class="fadeIn third" name="login" placeholder="password" [(ngModel)]="user.password">
+        <div class="button-row">
+          <button  mat-raised-button color="primary" type="submit">Submit</button>
+          <button mat-raised-button type="reset">Clear</button>
+        </div>
       </form>
   
       <!-- Remind Passowrd -->

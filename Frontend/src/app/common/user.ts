@@ -1,6 +1,6 @@
 export class User {
     id:number;
-    userName:String;
-    password:String;
+    username: string;
+    password: string;
     constructor(){};
 }
