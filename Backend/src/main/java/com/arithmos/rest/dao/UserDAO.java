@@ -15,23 +15,17 @@ public class UserDAO {
 	public JsonObject logEmployee(User employee) {
 		JsonObject success = new JsonObject();
 
-//		try {
-//			ResultSet rs = DB.search("SELECT * FROM `user` where `usernmae` = " + employee.getUsername()
-//					+ " AND password =" + employee.getPassword() + "");
-//			if (rs.next()) {
-//				success.addProperty("verified", "true");
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			success.addProperty("verified", "false");
-//		}
-
-		if (!(employee.getUsername().equals("") && employee.getPassword().equals(""))) {
-			success.addProperty("verified", true);
-		} else {
-			success.addProperty("verified", false);
+		try {
+		ResultSet rs = DB.search("SELECT * FROM `user` where `username` = " + employee.getUsername()
+					+ " AND password =" + employee.getPassword() + "");
+			if (rs.next()) {
+				success.addProperty("verified", "true");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			success.addProperty("verified", "false");
 		}
-
+		
 		return success;
 
 	}
