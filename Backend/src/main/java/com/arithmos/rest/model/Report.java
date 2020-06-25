@@ -6,7 +6,7 @@ public class Report {
 
 	}
 
-	public Report(String team, String assigneee, String jiraID, String taskDesc, String comment, boolean onCall,
+	public Report(String team, String assigneee, String jiraID, String taskDesc, String comment, String onCall,
 			String deliveryDate, String status, String blockers) {
 		super();
 		this.team = team;
@@ -26,7 +26,7 @@ public class Report {
 	private String jiraID;
 	private String taskDesc;
 	private String comment;
-	private boolean onCall;
+	private String onCall;
 	private String deliveryDate;
 	private String status;
 	private String blockers;
@@ -70,11 +70,11 @@ public class Report {
 		this.comment = comment;
 	}
 
-	public boolean isOnCall() {
+	public String isOnCall() {
 		return onCall;
 	}
 
-	public void setOnCall(boolean onCall) {
+	public void setOnCall(String onCall) {
 		this.onCall = onCall;
 	}
 
