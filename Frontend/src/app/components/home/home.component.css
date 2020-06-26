@@ -11,3 +11,7 @@
   #block1, #block2{
       display: inline;
   }
+
+  table {
+    width: 100%;
+  }

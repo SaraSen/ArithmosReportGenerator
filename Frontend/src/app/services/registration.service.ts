@@ -17,10 +17,7 @@ export class RegistrationService {
   public username: String;
   public password: String;
 
-  constructor(private httpClient : HttpClient) {
-    // this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    // this.currentUser = this.currentUserSubject.asObservable();
-   }
+  constructor(private httpClient : HttpClient) {}
 
    authenticate(user: User) {
     if (user) {
@@ -49,11 +46,6 @@ export class RegistrationService {
     return user
   }
 
-
-  //  public get currentUserValue(): User {
-  //   return this.currentUserSubject.value;
-  // }
-
   registerSuccessfulLogin(user: any) {
     if(user!=null){
       sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, user.username)
@@ -63,8 +55,7 @@ export class RegistrationService {
     }
   }
 
-  public loginUserFormRemote(user: Object): Observable<Object> {
-    
+  public loginUserFormRemote(user: Object): Observable<Object> {    
     return this.httpClient.post(`${this.baseUrl}/login`, user);
   }
 
