@@ -23,11 +23,19 @@ import com.google.gson.JsonObject;
 public class ReportController {
 
 	@Autowired
+<<<<<<< Updated upstream
 	private ReportService reportservice;
 
 	@PostMapping(path = "/pushreport", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<String> pushReport(@RequestBody List<Report> report) throws Exception {
 		return new ResponseEntity<String>(reportservice.pushReport(report).toString(), HttpStatus.OK);
+=======
+	private ReportService reporService;
+
+	@PostMapping(path = "/pushreport", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<String> pushReport(@RequestBody List<Report> report) throws Exception {
+		return new ResponseEntity<String>(reporService.pushReport(report).toString(), HttpStatus.OK);
+>>>>>>> Stashed changes
 
 	}
 
