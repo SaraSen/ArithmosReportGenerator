@@ -6,13 +6,13 @@ public class Report {
 
 	}
 
-	public Report(String date, String team, String assigneee, String jiraID, String taskDesc, String comment, String onCall,
+	public Report(String date, String team, String assignee, String jiraID, String taskDesc, String comment, String onCall,
 			String deliveryDate, String status, String blockers) {
 		super();
 		
 		this.date = date;
 		this.team = team;
-		this.assigneee = assigneee;
+		this.assignee = assignee;
 		this.jiraID = jiraID;
 		this.taskDesc = taskDesc;
 		this.comment = comment;
@@ -25,7 +25,7 @@ public class Report {
 
 	private String date;
 	private String team;
-	private String assigneee;
+	private String assignee;
 	private String jiraID;
 	private String taskDesc;
 	private String comment;
@@ -35,6 +35,14 @@ public class Report {
 	private String blockers;
 	
 		
+	public String getAssignee() {
+		return assignee;
+	}
+
+	public void setAssignee(String assignee) {
+		this.assignee = assignee;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -51,14 +59,7 @@ public class Report {
 		this.team = team;
 	}
 
-	public String getAssigneee() {
-		return assigneee;
-	}
-
-	public void setAssigneee(String assigneee) {
-		this.assigneee = assigneee;
-	}
-
+	
 	public String getJiraID() {
 		return jiraID;
 	}

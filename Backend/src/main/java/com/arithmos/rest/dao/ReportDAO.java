@@ -19,7 +19,7 @@ public class ReportDAO {
 		
 		JsonObject success = new JsonObject();
 
-		report.stream().forEach(c -> System.out.print(c.getAssigneee()));
+		report.stream().forEach(c -> System.out.print(c.getAssignee()));
 		success.addProperty("submitted", true);
 		return success;
 

@@ -14,6 +14,8 @@ import com.arithmos.rest.dao.ReportDAO;
 import com.arithmos.rest.dao.UserDAO;
 import com.arithmos.rest.model.Report;
 import com.arithmos.rest.model.User;
+import com.arithmos.rest.service.ReporServiceImpl;
+import com.arithmos.rest.service.ReportService;
 import com.google.gson.JsonObject;
 
 @RestController
@@ -21,11 +23,11 @@ import com.google.gson.JsonObject;
 public class ReportController {
 
 	@Autowired
-	private ReportDAO reportDAO;
+	private ReportService reportservice;
 
 	@PostMapping(path = "/pushreport", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<String> pushReport(@RequestBody List<Report> report) throws Exception {
-		return new ResponseEntity<String>(reportDAO.pushReport(report).toString(), HttpStatus.OK);
+		return new ResponseEntity<String>(reportservice.pushReport(report).toString(), HttpStatus.OK);
 
 	}
 

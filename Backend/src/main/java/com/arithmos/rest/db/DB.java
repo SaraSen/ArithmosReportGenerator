@@ -9,7 +9,7 @@ public class DB {
 
 	public static void createMyConnection() throws Exception {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		c = DriverManager.getConnection("jdbc:mysql://localhost:3306/report_generator", "root", "root");
+		c = DriverManager.getConnection("jdbc:mysql://localhost:3306/report_generator?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
 	}
 
 	public static void iud(String sql) throws Exception {
