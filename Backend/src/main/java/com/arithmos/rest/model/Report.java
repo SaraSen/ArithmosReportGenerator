@@ -6,13 +6,9 @@ public class Report {
 
 	}
 
-<<<<<<< Updated upstream
-	public Report(String date, String team, String assignee, String jiraID, String taskDesc, String comment, String onCall,
-			String deliveryDate, String status, String blockers) {
-=======
 	public Report(String date, String team, String assignee, String jiraID, String taskDesc, String comment,
 			String onCall, String deliveryDate, String status, String blockers) {
->>>>>>> Stashed changes
+
 		super();
 
 		this.date = date;
@@ -38,13 +34,7 @@ public class Report {
 	private String deliveryDate;
 	private String status;
 	private String blockers;
-	
-<<<<<<< Updated upstream
-		
-=======
-	
 
->>>>>>> Stashed changes
 	public String getAssignee() {
 		return assignee;
 	}
@@ -69,12 +59,8 @@ public class Report {
 		this.team = team;
 	}
 
-<<<<<<< Updated upstream
-	
 	public String getJiraID() {
-=======
-		public String getJiraID() {
->>>>>>> Stashed changes
+
 		return jiraID;
 	}
 

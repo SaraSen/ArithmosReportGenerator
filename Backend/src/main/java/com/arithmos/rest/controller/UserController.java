@@ -18,7 +18,7 @@ public class UserController {
 	private UserService userservice;
 
 	@PostMapping(path = "/login", consumes = "application/json", produces = "application/json")
-<<<<<<< Updated upstream
+
 	public ResponseEntity<?> logEmployee(@RequestBody User employee) throws Exception {
 		try{
 			return new ResponseEntity<>(userservice.logEmployee(employee), HttpStatus.OK);
@@ -26,10 +26,6 @@ public class UserController {
 			return new ResponseEntity<>(e,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-=======
-	public ResponseEntity<String> logEmployee(@RequestBody User employee) throws Exception {
-		return new ResponseEntity<String>(userservice.logEmployee(employee).toString(), HttpStatus.OK);
-				
->>>>>>> Stashed changes
+
 	}
 }

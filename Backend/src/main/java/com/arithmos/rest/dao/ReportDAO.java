@@ -18,10 +18,7 @@ public class ReportDAO {
 	public JsonObject pushReport(List<Report> report) {
 		JsonObject success = new JsonObject();
 
-<<<<<<< Updated upstream
-		report.stream().forEach(c -> System.out.print(c.getAssignee()));
-		success.addProperty("submitted", true);
-=======
+
 		try (Connection connection = DB.getMyConnection();
 				// please insert your prepared statement
 				PreparedStatement statement = connection.prepareStatement(
@@ -63,7 +60,7 @@ public class ReportDAO {
 			e1.printStackTrace();
 		}
 
->>>>>>> Stashed changes
+
 		return success;
 
 	}
