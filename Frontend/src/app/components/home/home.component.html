@@ -3,8 +3,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-    <form [formGroup]="reportForm" (ngSubmit)="onSubmit()" >
-      
+      <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+
         <div style="float: left; margin-left: 30%;">
           <mat-form-field class="example-full-width">
             <mat-label>Team</mat-label>
@@ -72,46 +72,52 @@
           <div class="w-100"></div>
           <button mat-raised-button color="primary">Add Task</button>
         </div>
-       
-     
-    </form>
-  </div>
-  <div class="row" style="margin-left: 30%; border: 1;">
-    <div class="col">
-      <table class="MyNiceStyle">
-        <thead>
-          <tr>
-            <th>Team</th>
-            <th>Assignee</th>
-            <th>Jira ID</th>
-            <th>Task Description</th>
-            <th>On call</th>
-            <th>Delivery Date</th>
-            <th>Status</th>
-            <th>Blockers</th>
-          </tr>
-        </thead>
-  
-        <tr *ngFor="let data of ItemsArray">
-          <td>{{data[0].value}}</td>
-          <td>{{data[1].value}}</td>
-          <td>{{data[2].value}}</td>
-          <td>{{data[3].value}}</td>
-          <td>{{data[4].value}}</td>
-          <td>{{data[5].value}}</td>
-          <td>{{data[6].value}}</td>
-          <td>{{data[7].value}}</td>
-        </tr>
-      </table>
+
+
+      </form>
     </div>
-  </div>
-  <div class="w-100"></div>
-  <div class="button-row">
-    <button mat-raised-button color="primary" (click)="submitReport()" type="submit">Submit</button>
-    <button mat-raised-button color="warn" type="reset">Clear</button>
-  </div>
+    <div class="container">
+      <div class="row justify-content-md-center" >
+        <div class="col">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>Assignee</th>
+                <th>Jira ID</th>
+                <th>Task Description</th>
+                <th>Comments</th>
+                <th>On call</th>
+                <th>Delivery Date</th>
+                <th>Status</th>
+                <th>Blockers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of ItemsArray">
+                <td>{{data[0].value}}</td>
+                <td>{{data[1].value}}</td>
+                <td>{{data[2].value}}</td>
+                <td>{{data[3].value}}</td>
+                <td>{{data[4].value}}</td>
+                <td>{{data[5].value}}</td>
+                <td>{{data[6].value | date: 'dd/MM/yyyy'}}</td>
+                <td>{{data[7].value}}</td>
+                <td>{{data[8].value}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="w-100"></div>
+      <div class="row justify-content-md-center">
+        <button mat-raised-button color="primary" (click)="submitReport()" type="submit">Submit</button>
+        <button mat-raised-button color="warn" type="reset" style="margin-left: 5%;">Clear</button>
+      </div>
+    </div>
     
 
 
+
   </div>
-  </div>
+</div>
