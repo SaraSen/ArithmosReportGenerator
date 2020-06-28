@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   graterThanZero : boolean;
   returnUrl: string;
+  userRole: string;
 
   constructor(private service : RegistrationService,
     private formBuilder: FormBuilder,
@@ -25,7 +26,6 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,) { 
 
       if (this.service.isUserLoggedIn) { 
-        console.log("workign")
         this.router.navigate(['/']);
       }
     }
@@ -53,14 +53,17 @@ export class LoginComponent implements OnInit {
     }
 
     this.service.loginUserFormRemote(this.user).pipe(first())
-      .subscribe(data => {
-
-       if(this.service.registerSuccessfulLogin(data)){
-       this.router.navigate([this.returnUrl]);
-       }else{
+      .subscribe(res => {
+        this.getUserRole(res)
+        if(this.service.registerSuccessfulLogin(res)){
+        this.router.navigate([this.returnUrl]);
+        }else{
          window.alert("check your credentials");
-       }
-        
+        }
       });
+  }
+
+  getUserRole(user: any){
+    return this.userRole=user.role;
   }
 }

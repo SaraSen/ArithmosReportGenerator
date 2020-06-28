@@ -13,9 +13,12 @@ export class RegistrationService {
   
   baseUrl ="http://localhost:8080/employees";
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
+  USER_NAME_SESSION_ATTRIBUTE_ROLE = 'authenticatedRole'
 
   public username: String;
   public password: String;
+  public role: String;
+
 
   constructor(private httpClient : HttpClient) {}
 
@@ -49,6 +52,7 @@ export class RegistrationService {
   registerSuccessfulLogin(user: any) {
     if(user!=null){
       sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, user.username)
+      sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE, user.role)
       return true
     }else{
       return false;
