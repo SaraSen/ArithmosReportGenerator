@@ -32,7 +32,7 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 	Sheet sheet = null;
 	CellStyle normaldataCellStyle;
 	CellStyle asigneedataCellStyle;
-	int p, q = 0;
+	int p, q, r = 0;
 
 	private Sheet createSheets(String name) {
 		return workbook.createSheet(name);
@@ -117,8 +117,7 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 	@Override
 	public ByteArrayInputStream contactListToExcelFile() {
 
-		List<Report> reports =
-				null;
+		List<Report> reports = excelDAO.createTestData();
 		populateSheets();
 
 		try {
@@ -126,9 +125,10 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 			for (int i = 0; i < reports.size(); i++) {
 
 				if (reports.get(i).getTeam().equalsIgnoreCase("devqa")) {
-					Row dataRow = workbook.getSheetAt(0).createRow(i + 1);
-					addData(reports, dataRow, i, i);
+					Row dataRow = workbook.getSheetAt(0).createRow(r + 1);
+					addData(reports, dataRow, i, r);
 					formatSheet();
+					r++;
 
 				} else if (reports.get(i).getTeam().equalsIgnoreCase("infrastructure")) {
 					Row dataRow = workbook.getSheetAt(1).createRow(p + 1);
@@ -152,10 +152,6 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 			return null;
-		}finally {
-			if(null != workbook) {
-//				workbook.close();
-			}
 		}
 	}
 
