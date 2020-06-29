@@ -27,8 +27,8 @@ public class ReportController {
 	@PostMapping(path = "/pushreport", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<String> pushReport(@RequestBody List<Report> report) throws Exception {
 		System.out.println(report);
-		return new ResponseEntity<>(HttpStatus.OK);
-//		return new ResponseEntity<String>(reportservice.pushReport(report).toString(), HttpStatus.OK);
+//		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<String>(reportservice.pushReport(report).toString(), HttpStatus.OK);
 	}
 
 }

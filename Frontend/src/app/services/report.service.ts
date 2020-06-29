@@ -17,7 +17,7 @@ export class ReportService {
   // }
 
   downloadReport(){
-    return this.httpClient.get('http://localhost:8080/download/tasks.xlsx');
+    return this.httpClient.get('http://localhost:8080/download/tasks');
   }
 
   sendReport(reports: Object[]): Observable<Object> {

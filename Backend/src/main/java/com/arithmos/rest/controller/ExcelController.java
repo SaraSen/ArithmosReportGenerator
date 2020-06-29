@@ -16,19 +16,19 @@ import com.arithmos.rest.service.ExcelOutputService;
 
 @RestController
 @RequestMapping(path = "/download")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ExcelController {
-	
+
 	@Autowired
 	private ExcelOutputService excelOutputService;
-	
-	@GetMapping("/tasks.xlsx")
-    public void downloadCsv(HttpServletResponse response) throws IOException {
-	    System.out.println("hello");
-        response.setContentType("application/octet-stream");
-        response.setHeader("Content-Disposition", "attachment; filename=tasks.xlsx");
-        ByteArrayInputStream stream = excelOutputService.contactListToExcelFile();
-        IOUtils.copy(stream, response.getOutputStream());
-    }
+
+	@GetMapping("/tasks")
+	public void downloadCsv(HttpServletResponse response) throws IOException {
+		System.out.println("hello");
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment; filename=tasks.xlsx");
+		ByteArrayInputStream stream = excelOutputService.contactListToExcelFile();
+		IOUtils.copy(stream, response.getOutputStream());
+	}
 
 }

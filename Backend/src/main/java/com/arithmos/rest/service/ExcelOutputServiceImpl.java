@@ -27,6 +27,7 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 	ExcelDAO excelDAO;
 
 	Workbook workbook = new XSSFWorkbook();
+
 	Sheet sheet = null;
 
 	private Sheet createSheets(String name) {
@@ -153,6 +154,10 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 			return null;
+		}finally {
+			if(null != workbook) {
+//				workbook.close();
+			}
 		}
 	}
 
