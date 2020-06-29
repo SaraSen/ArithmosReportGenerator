@@ -1,10 +1,11 @@
 package com.arithmos.rest.service;
 
 import com.arithmos.rest.model.User;
-import com.google.gson.JsonObject;
+
+import java.util.Optional;
 
 public interface UserService {
 	
-	public User logEmployee(User employee);
+	public Optional<User> logEmployee(User employee);
 
 }

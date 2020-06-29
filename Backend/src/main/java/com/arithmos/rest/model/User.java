@@ -1,18 +1,22 @@
 package com.arithmos.rest.model;
 
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 public class User {
 
     public User() {
 
     }
 
-    public User(Integer id, String username, String password, String role) {
+    public User(String username, String role, String password) {
         super();
         this.id = id;
+        this.password=password;
         this.username = username;
-        this.password = password;
         this.role = role;
     }
+
+
  
     private Integer id;
     private String username;
@@ -23,12 +27,12 @@ public class User {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getUsername() {
         return username;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setUsername(String username) {
