@@ -54,8 +54,9 @@ export class LoginComponent implements OnInit {
 
     this.service.loginUserFormRemote(this.user).pipe(first())
       .subscribe(res => {
-        this.getUserRole(res)
+        
         if(this.service.registerSuccessfulLogin(res)){
+        this.getUserRole(res)
         this.router.navigate([this.returnUrl]);
         }else{
          window.alert("check your credentials");

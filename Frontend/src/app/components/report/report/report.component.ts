@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { Report } from 'src/app/common/report';
 import { ReportService } from 'src/app/services/report.service';
-import { FormGroup,FormBuilder } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,6 +17,7 @@ export class ReportComponent implements OnInit {
   isAdmin = false;
   itemsArray= [];
   submitted = false;
+  hasValues = false;
   mapped =[];
   tableData =[];
   objectArray=[];
@@ -36,14 +37,14 @@ export class ReportComponent implements OnInit {
   ngOnInit() {
     this.isLoggedIn = true;
     this.reportForm = this.formBuilder.group({
-      team: [],
-      assignee:[],
-      jiraID:[],
-      taskDescription:[],
+      team: ['', Validators.required],
+      assignee:['', Validators.required],
+      jiraID:['', Validators.required],
+      taskDescription:['', Validators.required],
       comments:[],
-      onCall:[],
-      deliveryDate:[],
-      status:[],
+      onCall:['', Validators.required],
+      deliveryDate:['', Validators.required],
+      status:['', Validators.required],
       blockers:[]
     });
     this.checkRole()
@@ -54,14 +55,19 @@ export class ReportComponent implements OnInit {
   }
 
   onSubmit(){
+    
     this.mapped = Object.keys(this.report).map(key => ({type: key, value: this.report[key]}));
     this.itemsArray.push(this.mapped);
     this.objectArray.push(this.report);
+    this.hasValues = true;
   }
 
   submitReport(){
     this.reportService.sendReport(this.objectArray).subscribe(data=>
-      console.log(data))
+      alert("Submission Successful"));
+      this.reportForm.reset();
+      this.hasValues = false;
+      this.itemsArray = []
   }
 
   checkRole(){
