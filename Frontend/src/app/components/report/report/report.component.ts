@@ -24,6 +24,7 @@ export class ReportComponent implements OnInit {
   reportForm: FormGroup;
   report = new Report();
   reports: Observable<Report[]>;
+  i:Number;
 
   constructor(private reportService: ReportService,
     private route: ActivatedRoute,
@@ -55,19 +56,25 @@ export class ReportComponent implements OnInit {
   }
 
   onSubmit(){
-    
+   
     this.mapped = Object.keys(this.report).map(key => ({type: key, value: this.report[key]}));
     this.itemsArray.push(this.mapped);
     this.objectArray.push(this.report);
     this.hasValues = true;
+    
   }
 
   submitReport(){
     this.reportService.sendReport(this.objectArray).subscribe(data=>
       alert("Submission Successful"));
+      this.itemsArray.splice(0);
+      for(let i=0; i<=this.itemsArray.length; i++){
+        this.itemsArray.pop();
+        this.mapped.pop();
+        console.log(this.itemsArray)
+      }
       this.reportForm.reset();
       this.hasValues = false;
-      this.itemsArray = []
   }
 
   checkRole(){
