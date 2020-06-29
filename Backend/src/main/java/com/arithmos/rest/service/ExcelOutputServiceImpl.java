@@ -15,7 +15,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.spel.ast.Assign;
 import org.springframework.stereotype.Service;
 
 import com.arithmos.rest.dao.ExcelDAO;
@@ -27,7 +26,7 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 	@Autowired
 	ExcelDAO excelDAO;
 
-	Workbook workbook = new XSSFWorkbook();
+	Workbook workbook;
 
 	Sheet sheet = null;
 	CellStyle normaldataCellStyle;
@@ -35,6 +34,7 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 	int p, q, r = 0;
 
 	private Sheet createSheets(String name) {
+
 		return workbook.createSheet(name);
 	}
 
@@ -47,12 +47,10 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 
 		for (int i = 0; i < sheetnames.size(); i++) {
 			sheet = createSheets(sheetnames.get(i));
-
 		}
 
 		for (int i = 0; i < 3; i++) {
 			workbook.setActiveSheet(i);
-			System.out.println(workbook.getActiveSheetIndex());
 
 			Row row = workbook.getSheetAt(i).createRow(0);
 			CellStyle headerCellStyle = workbook.createCellStyle();
@@ -118,6 +116,10 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 	public ByteArrayInputStream contactListToExcelFile() {
 
 		List<Report> reports = excelDAO.createTestData();
+		workbook = new XSSFWorkbook();
+		p = 0;
+		q = 0;
+		r = 0;
 		populateSheets();
 
 		try {
@@ -151,22 +153,15 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 			return new ByteArrayInputStream(outputStream.toByteArray());
 		} catch (IOException ex) {
 			ex.printStackTrace();
-			return null;
 		}
+		return null;
 	}
 
 	private void formatSheet() {
-		sheet.autoSizeColumn(0);
-		sheet.autoSizeColumn(1);
-		sheet.autoSizeColumn(2);
-		sheet.autoSizeColumn(3);
-		sheet.autoSizeColumn(4);
-		sheet.autoSizeColumn(5);
-		sheet.autoSizeColumn(6);
-		sheet.autoSizeColumn(7);
-		sheet.autoSizeColumn(8);
-		sheet.autoSizeColumn(9);
-		sheet.autoSizeColumn(10);
+
+		for (int i = 0; i < 11; i++) {
+			sheet.autoSizeColumn(i);
+		}
 
 	}
 
