@@ -18,7 +18,6 @@ public class UserController {
 	private UserService userservice;
 
 	@PostMapping(path = "/login", consumes = "application/json", produces = "application/json")
-
 	public ResponseEntity<?> logEmployee(@RequestBody User employee) throws Exception {
 		try{
 			return new ResponseEntity<>(userservice.logEmployee(employee), HttpStatus.OK);

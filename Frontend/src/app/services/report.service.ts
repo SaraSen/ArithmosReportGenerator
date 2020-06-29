@@ -12,8 +12,12 @@ export class ReportService {
 
   constructor(private httpClient : HttpClient) { }
 
-  getReport(): Observable<any[]>{
-    return this.httpClient.get<any[]>(`${this.baseUrl}/getReport`);
+  // getReport(): Observable<any[]>{
+  //   return this.httpClient.get<any[]>(`${this.baseUrl}/getReport`);
+  // }
+
+  downloadReport(){
+    return this.httpClient.get('http://localhost:8080/download/tasks.xlsx');
   }
 
   sendReport(reports: Object[]): Observable<Object> {

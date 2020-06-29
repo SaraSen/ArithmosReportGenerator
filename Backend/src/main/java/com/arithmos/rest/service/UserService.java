@@ -5,6 +5,6 @@ import com.google.gson.JsonObject;
 
 public interface UserService {
 	
-	public JsonObject logEmployee(User employee);
+	public User logEmployee(User employee);
 
 }

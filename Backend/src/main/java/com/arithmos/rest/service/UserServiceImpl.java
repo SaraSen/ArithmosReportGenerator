@@ -14,8 +14,14 @@ public class UserServiceImpl implements UserService {
 	UserDAO userDAO;
 
 	@Override
-	public JsonObject logEmployee(User employee) {
-		return userDAO.logEmployee(employee);
+	public User logEmployee(User employee) {
+		if(employee.getUsername().equals("a") && employee.getPassword().equals("a")){
+			User user = new User();
+			user.setUsername("a");
+			user.setRole("Admin");
+			return user;
+		}else return null;
+//		return userDAO.logEmployee(employee);
 	}
 
 }

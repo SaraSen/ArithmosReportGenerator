@@ -9,17 +9,22 @@ import { RegistrationService } from 'src/app/services/registration.service';
 export class HomeComponent implements OnInit {
 
   isAdmin = false;
+  isLoggedIn = false;
 
   constructor(private service: RegistrationService) { }
 
   ngOnInit(): void {
-
+    this.isLoggedIn = true;
     this.checkAdmin()
-    console.log();
+    console.log(sessionStorage.getItem("authenticatedRole"));
+  }
+
+  handleLogout() {
+    this.service.logout();
   }
 
   checkAdmin(){
-    if(sessionStorage.getItem('authenticatedUserRole') === 'Admin'){
+    if(sessionStorage.getItem('authenticatedRole') === 'Admin'){
       this.isAdmin = true;
     }
   }

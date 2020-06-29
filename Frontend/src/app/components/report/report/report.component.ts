@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 export class ReportComponent implements OnInit {
 
   isLoggedIn = false;
+  isAdmin = false;
   itemsArray= [];
   submitted = false;
   mapped =[];
@@ -33,6 +34,7 @@ export class ReportComponent implements OnInit {
     
 
   ngOnInit() {
+    this.isLoggedIn = true;
     this.reportForm = this.formBuilder.group({
       team: [],
       assignee:[],
@@ -44,8 +46,7 @@ export class ReportComponent implements OnInit {
       status:[],
       blockers:[]
     });
-    this.reportService.getReport().subscribe(res=>{
-    })
+    this.checkRole()
   }
 
   handleLogout() {
@@ -63,4 +64,9 @@ export class ReportComponent implements OnInit {
       console.log(data))
   }
 
+  checkRole(){
+    if(sessionStorage.getItem('authenticatedRole') === 'Admin'){
+      this.isAdmin = true;
+    }
+  }
 }

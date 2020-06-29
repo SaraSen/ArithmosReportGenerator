@@ -116,4 +116,19 @@ public class Report {
 		this.blockers = blockers;
 	}
 
+	@Override
+	public String toString() {
+		return "Report{" +
+				"date='" + date + '\'' +
+				", team='" + team + '\'' +
+				", assignee='" + assignee + '\'' +
+				", jiraID='" + jiraID + '\'' +
+				", taskDesc='" + taskDesc + '\'' +
+				", comment='" + comment + '\'' +
+				", onCall='" + onCall + '\'' +
+				", deliveryDate='" + deliveryDate + '\'' +
+				", status='" + status + '\'' +
+				", blockers='" + blockers + '\'' +
+				'}';
+	}
 }
