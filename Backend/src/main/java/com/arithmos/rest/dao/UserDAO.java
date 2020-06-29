@@ -14,26 +14,6 @@ public class UserDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-//	public JsonObject logEmployee(User employee) {
-//
-//		JsonObject success = new JsonObject();
-//		boolean value = false;
-//
-//		try {
-//			String sql = "SELECT * FROM `user` WHERE `Username`= '" + employee.getUsername() + "' AND `Password` = '"
-//					+ employee.getPassword() + "' ";
-//			ResultSet rs = DB.search(sql);
-//			if (rs.next()) {
-//				success.addProperty("verified", "true");
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			success.addProperty("verified", "false");
-//
-//		}
-//
-//		return success;
-//	}
 
     public Optional<User> logEmployee(User user) {
 
@@ -58,7 +38,5 @@ public class UserDAO {
         } catch (Exception e) {
             return null;
         }
-
     }
-
 }
