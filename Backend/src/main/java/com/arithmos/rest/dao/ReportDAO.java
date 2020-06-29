@@ -1,19 +1,11 @@
 package com.arithmos.rest.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.arithmos.rest.db.DB;
 import com.arithmos.rest.model.Report;
 import com.google.gson.JsonObject;
 

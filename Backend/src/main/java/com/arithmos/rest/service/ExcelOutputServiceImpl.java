@@ -117,7 +117,8 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 	@Override
 	public ByteArrayInputStream contactListToExcelFile() {
 
-		List<Report> reports = excelDAO.createTestData();
+		List<Report> reports =
+				null;
 		populateSheets();
 
 		try {
@@ -174,51 +175,51 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 	}
 
 	private void addData(List<Report> reports, Row dataRow, int i, int id) {
-		
+
 		Cell taskID = dataRow.createCell(0);
 		taskID.setCellStyle(normaldataCellStyle);
 		taskID.setCellValue(id);
-		
+
 		Cell date = dataRow.createCell(1);
 		date.setCellStyle(normaldataCellStyle);
 		date.setCellValue(reports.get(i).getDate());
-		
+
 		Cell asignee = dataRow.createCell(2);
 		asignee.setCellStyle(asigneedataCellStyle);
 		asignee.setCellValue(reports.get(i).getAssignee());
-		
+
 		Cell team = dataRow.createCell(3);
 		team.setCellStyle(normaldataCellStyle);
 		team.setCellValue(reports.get(i).getTeam());
-		
+
 		Cell jiraID = dataRow.createCell(4);
 		jiraID.setCellStyle(normaldataCellStyle);
 		jiraID.setCellValue(reports.get(i).getJiraID());
-		
+
 		Cell taskDesc = dataRow.createCell(5);
 		taskDesc.setCellStyle(normaldataCellStyle);
 		taskDesc.setCellValue(reports.get(i).getTaskDesc());
-		
+
 		Cell comment = dataRow.createCell(6);
 		comment.setCellStyle(normaldataCellStyle);
 		comment.setCellValue(reports.get(i).getComment());
-		
+
 		Cell onCall = dataRow.createCell(7);
 		onCall.setCellStyle(normaldataCellStyle);
 		onCall.setCellValue(reports.get(i).getOnCall());
-		
+
 		Cell dilveryData = dataRow.createCell(8);
 		dilveryData.setCellStyle(normaldataCellStyle);
 		dilveryData.setCellValue(reports.get(i).getDeliveryDate());
-		
+
 		Cell status = dataRow.createCell(9);
 		status.setCellStyle(normaldataCellStyle);
 		status.setCellValue(reports.get(i).getStatus());
-		
+
 		Cell blockers = dataRow.createCell(10);
 		blockers.setCellStyle(normaldataCellStyle);
 		blockers.setCellValue(reports.get(i).getBlockers());
-		
+
 	}
 
 }
