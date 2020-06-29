@@ -24,7 +24,6 @@ public class ExcelController {
 
 	@GetMapping("/tasks")
 	public void downloadCsv(HttpServletResponse response) throws IOException {
-		System.out.println("hello");
 		response.setContentType("application/octet-stream");
 		response.setHeader("Content-Disposition", "attachment; filename=tasks.xlsx");
 		ByteArrayInputStream stream = excelOutputService.contactListToExcelFile();
