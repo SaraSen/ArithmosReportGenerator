@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -56,14 +57,20 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 			CellStyle headerCellStyle = workbook.createCellStyle();
 			headerCellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
 			headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			headerCellStyle.setBorderBottom(BorderStyle.THICK);
+			headerCellStyle.setBorderLeft(BorderStyle.MEDIUM);
+			headerCellStyle.setBorderRight(BorderStyle.MEDIUM);
+			headerCellStyle.setBorderTop(BorderStyle.THICK);
 
 			normaldataCellStyle = workbook.createCellStyle();
 			normaldataCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());
 			normaldataCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			normaldataCellStyle.setBorderBottom(BorderStyle.MEDIUM);
 
 			asigneedataCellStyle = workbook.createCellStyle();
 			asigneedataCellStyle.setFillForegroundColor(IndexedColors.ORANGE.getIndex());
 			asigneedataCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			asigneedataCellStyle.setBorderBottom(BorderStyle.MEDIUM);
 			// Creating header
 			Cell cell = row.createCell(0);
 			cell.setCellValue("Task ID");
@@ -127,10 +134,16 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 			for (int i = 0; i < reports.size(); i++) {
 
 				if (reports.get(i).getTeam().equalsIgnoreCase("devqa")) {
+//					if (reports.get(i).getAssignee().equals(reports.get(1 + i-1).getAssignee())) {
+//						System.out.println(reports.get(i).getAssignee() + "==="
+//								+ reports.get((reports.size() - (reports.size()-1)) + 1).getAssignee());
+//					}
 					Row dataRow = workbook.getSheetAt(0).createRow(r + 1);
 					addData(reports, dataRow, i, r);
 					formatSheet();
 					r++;
+
+				
 
 				} else if (reports.get(i).getTeam().equalsIgnoreCase("infrastructure")) {
 					Row dataRow = workbook.getSheetAt(1).createRow(p + 1);
