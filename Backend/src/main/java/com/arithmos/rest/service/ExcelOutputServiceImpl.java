@@ -4,7 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -32,7 +34,7 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 	Sheet sheet = null;
 	CellStyle normaldataCellStyle;
 	CellStyle asigneedataCellStyle;
-	int p, q, r = 0;
+	int p, q, r, s = 0;
 
 	private Sheet createSheets(String name) {
 
@@ -57,10 +59,10 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 			CellStyle headerCellStyle = workbook.createCellStyle();
 			headerCellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
 			headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-			headerCellStyle.setBorderBottom(BorderStyle.THICK);
+			headerCellStyle.setBorderBottom(BorderStyle.MEDIUM);
 			headerCellStyle.setBorderLeft(BorderStyle.MEDIUM);
 			headerCellStyle.setBorderRight(BorderStyle.MEDIUM);
-			headerCellStyle.setBorderTop(BorderStyle.THICK);
+			headerCellStyle.setBorderTop(BorderStyle.MEDIUM);
 
 			normaldataCellStyle = workbook.createCellStyle();
 			normaldataCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());
@@ -120,13 +122,14 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 	}
 
 	@Override
-	public ByteArrayInputStream contactListToExcelFile() {
+	public ByteArrayInputStream contactListToExcelFile(Map<String, Date> dateRange) {
 
-		List<Report> reports = excelDAO.createTestData();
+		List<Report> reports = excelDAO.createTestData(dateRange);
 		workbook = new XSSFWorkbook();
 		p = 0;
 		q = 0;
 		r = 0;
+		s = 0;
 		populateSheets();
 
 		try {
@@ -134,16 +137,10 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 			for (int i = 0; i < reports.size(); i++) {
 
 				if (reports.get(i).getTeam().equalsIgnoreCase("devqa")) {
-//					if (reports.get(i).getAssignee().equals(reports.get(1 + i-1).getAssignee())) {
-//						System.out.println(reports.get(i).getAssignee() + "==="
-//								+ reports.get((reports.size() - (reports.size()-1)) + 1).getAssignee());
-//					}
 					Row dataRow = workbook.getSheetAt(0).createRow(r + 1);
 					addData(reports, dataRow, i, r);
 					formatSheet();
 					r++;
-
-				
 
 				} else if (reports.get(i).getTeam().equalsIgnoreCase("infrastructure")) {
 					Row dataRow = workbook.getSheetAt(1).createRow(p + 1);

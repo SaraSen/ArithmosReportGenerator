@@ -22,13 +22,13 @@ public class ExcelController {
 	private ExcelOutputService excelOutputService;
 
 	@PostMapping(value = "tasks")
-	public ResponseEntity<?> excelReport(@RequestBody Map<String,Date> dateRange) throws IOException {
+	public ResponseEntity<?> excelReport(@RequestBody Map<String, Date> dateRange) throws IOException {
 		System.out.println(dateRange);
-//		ByteArrayInputStream in = excelOutputService.contactListToExcelFile();
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add("Content-Disposition", "attachment; filename=report.xlsx");
-	return new ResponseEntity<>(HttpStatus.OK);
-		//return ResponseEntity.ok().headers(headers).body(new InputStreamResource(in));
+		ByteArrayInputStream in = excelOutputService.contactListToExcelFile(dateRange);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename=report.xlsx");
+
+		return ResponseEntity.ok().headers(headers).body(new InputStreamResource(in));
 	}
 
 }
