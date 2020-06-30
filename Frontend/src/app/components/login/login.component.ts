@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/common/user';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { NotificationServiceService } from 'src/app/services/notification-service.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
   constructor(private service : RegistrationService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,) { 
+    private route: ActivatedRoute,
+    private notificationService: NotificationServiceService) { 
 
       if (this.service.isUserLoggedIn) { 
         this.router.navigate(['/']);
@@ -59,7 +61,7 @@ export class LoginComponent implements OnInit {
         this.getUserRole(res)
         this.router.navigate([this.returnUrl]);
         }else{
-         window.alert("check your credentials");
+         this.notificationService.warn('Please check the credentials and try agian')
         }
       });
   }

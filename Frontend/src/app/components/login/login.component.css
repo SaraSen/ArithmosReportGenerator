@@ -259,3 +259,6 @@ html {
     width:60%;
   }
   
+  .red-snackbar{
+    background: red;
+}

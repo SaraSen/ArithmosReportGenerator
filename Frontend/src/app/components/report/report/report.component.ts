@@ -5,6 +5,7 @@ import { Report } from 'src/app/common/report';
 import { ReportService } from 'src/app/services/report.service';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { NotificationServiceService } from 'src/app/services/notification-service.service';
 
 @Component({
   selector: 'app-report',
@@ -30,7 +31,8 @@ export class ReportComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router,
-    private authenticationService: RegistrationService) { 
+    private authenticationService: RegistrationService,
+    private notificationService: NotificationServiceService) { 
       
     }
     
@@ -70,7 +72,7 @@ export class ReportComponent implements OnInit {
 
   submitReport(){
     this.reportService.sendReport(this.objectArray).subscribe(data=>
-      alert("Submission Successful"));
+      this.notificationService.success('Submission Complete'));
       this.itemsArray.splice(0);
       for(let i=0; i<=this.itemsArray.length; i++){
         this.itemsArray.pop();
