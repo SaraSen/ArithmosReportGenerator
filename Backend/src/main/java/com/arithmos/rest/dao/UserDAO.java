@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import javax.jws.soap.SOAPBinding;
 import java.util.Optional;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 @Repository
 public class UserDAO {
 
@@ -21,7 +23,7 @@ public class UserDAO {
 
             Optional<User> userLoggedIn = jdbcTemplate.queryForObject(
                     "select * from user where Username = ? and Password = ?",
-                    new Object[]{user.getUsername(), user.getPassword()},
+                    new Object[]{user.getUsername(), DigestUtils.md5Hex(user.getPassword())},
                     (rs, rowNum) ->
                             Optional.of(new User(
                                     rs.getString("Username"),
@@ -30,13 +32,18 @@ public class UserDAO {
 
                             ))
             );
-            if (userLoggedIn.get().getPassword().equals(user.getPassword()) &&
+            
+//            System.out.println(DigestUtils.md5Hex(userLoggedIn.get().getPassword()));
+//            System.out.println(DigestUtils.md5Hex(user.getPassword()));
+            
+            if (userLoggedIn.get().getPassword().equals(DigestUtils.md5Hex(user.getPassword())) &&
                     userLoggedIn.get().getUsername().equals(user.getUsername())) {
                 return userLoggedIn;
             } else return null;
 
         } catch (Exception e) {
-            return null;
+            e.printStackTrace();
         }
+		return null;
     }
 }
