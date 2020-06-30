@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { ReportService } from 'src/app/services/report.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-report-generator',
@@ -11,13 +12,21 @@ export class ReportGeneratorComponent implements OnInit {
 
   isLoggedIn = false;
   isAdmin = false;
+  reportGenerateForm : FormGroup;
+  startDate : Date;
+  endDate : Date;
 
   constructor(private authenticationService: RegistrationService,
-    private reportService: ReportService) { }
+    private reportService: ReportService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.isLoggedIn=true;
     this.checkRole();
+    this.reportGenerateForm = this.formBuilder.group({
+      startDate:[],
+      endDate:[]
+    });
   }
 
   handleLogout() {
@@ -30,10 +39,10 @@ export class ReportGeneratorComponent implements OnInit {
     }
   }
 
-  downloadReport()
-  {
-    this.reportService.downloadReport().subscribe(data=>{
-  
+
+  onSubmit(){
+   let map = {"startDate":this.startDate,"endDate":this.endDate};
+    this.reportService.downloadReport(map).subscribe(data=>{
     })
   }
 }

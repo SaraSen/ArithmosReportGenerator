@@ -16,11 +16,13 @@ export class ReportService {
   //   return this.httpClient.get<any[]>(`${this.baseUrl}/getReport`);
   // }
 
-  downloadReport(){
-    return this.httpClient.get('http://localhost:8080/download/tasks');
+  downloadReport(map:any){
+    console.log(map)
+    return this.httpClient.post('http://localhost:8080/download/tasks',map);
   }
 
   sendReport(reports: Object[]): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}/pushreport`, reports);
   }
+
 }

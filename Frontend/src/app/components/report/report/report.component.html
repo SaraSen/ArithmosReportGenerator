@@ -86,7 +86,7 @@
             <textarea matInput formControlName="blockers" [(ngModel)]="report.blockers"></textarea>
           </mat-form-field>
           <div class="w-100"></div>
-          <button mat-raised-button color="primary" [disabled]="!reportForm.valid">Add Task</button>
+          <button mat-raised-button color="primary" [disabled]="!reportForm.valid" (click)="resetForm()">Add Task</button>
         </div>
       </form>
     </div>

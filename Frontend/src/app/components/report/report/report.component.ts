@@ -55,13 +55,17 @@ export class ReportComponent implements OnInit {
     this.authenticationService.logout();
   }
 
+  resetForm(){
+    console.log("ho")
+    
+  }
+
   onSubmit(){
    
     this.mapped = Object.keys(this.report).map(key => ({type: key, value: this.report[key]}));
     this.itemsArray.push(this.mapped);
     this.objectArray.push(this.report);
     this.hasValues = true;
-    
   }
 
   submitReport(){
