@@ -15,6 +15,11 @@
 
 
 <div class="container">
+  <p>
+   <b>
+    Hi {{userName}} !
+   </b> 
+  </p> 
   <h2 class="text-center">Add New Report</h2>
   <br>
   <br>
@@ -88,7 +93,7 @@
           </mat-form-field>
           <div class="w-100"></div>
           <div class="row justify-content-md-center">
-            <button mat-raised-button color="primary" [disabled]="!reportForm.valid" (click)="resetForm()">Add Task</button>
+            <button mat-raised-button color="primary" [disabled]="!reportForm.valid">Add Task</button>
             <button mat-raised-button color="warn" type="reset" style="margin-left: 3%;">Clear</button>
           </div>
          

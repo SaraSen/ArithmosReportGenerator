@@ -20,17 +20,14 @@ export class ReportComponent implements OnInit {
   submitted = false;
   hasValues = false;
   mapped =[];
-  tableData =[];
-  objectArray=[];
-  reportForm: FormGroup;
   report = new Report();
-  reports: Observable<Report[]>;
-  i:Number;
+  objectArray = [];
+  reportForm: FormGroup;
+  userName: string;
 
   constructor(private reportService: ReportService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private router: Router,
     private authenticationService: RegistrationService,
     private notificationService: NotificationServiceService) { 
       
@@ -44,41 +41,38 @@ export class ReportComponent implements OnInit {
       assignee:['', Validators.required],
       jiraID:['', Validators.required],
       taskDescription:['', Validators.required],
-      comments:[],
+      comments:['', Validators.required],
       onCall:['', Validators.required],
       deliveryDate:['', Validators.required],
       status:['', Validators.required],
-      blockers:[]
+      blockers:['', Validators.required]
     });
     this.checkRole()
+    this.userName = sessionStorage.getItem("authenticatedUser");
   }
 
   handleLogout() {
     this.authenticationService.logout();
   }
 
-  resetForm(){
-    console.log("ho")
-    
-  }
-
   onSubmit(){
-   
+
+    this.objectArray.push(this.report); 
     this.mapped = Object.keys(this.report).map(key => ({type: key, value: this.report[key]}));
     this.itemsArray.push(this.mapped);
-    this.objectArray.push(this.report);
     this.hasValues = true;
+    this.report = new Report();
   }
 
   submitReport(){
+    if(this.report.comment==null||this.report.comment==''){
+      
+      this.report.comment="-";
+    }
     this.reportService.sendReport(this.objectArray).subscribe(data=>
       this.notificationService.success('Submission Complete'));
       this.itemsArray.splice(0);
-      for(let i=0; i<=this.itemsArray.length; i++){
-        this.itemsArray.pop();
-        this.mapped.pop();
-        console.log(this.itemsArray)
-      }
+      this.objectArray.splice(0);
       this.reportForm.reset();
       this.hasValues = false;
   }
@@ -91,5 +85,6 @@ export class ReportComponent implements OnInit {
 
   onDelete(data: number){
     this.itemsArray.splice(data,1);
+    this.objectArray.splice(data,1)
   }
 }
