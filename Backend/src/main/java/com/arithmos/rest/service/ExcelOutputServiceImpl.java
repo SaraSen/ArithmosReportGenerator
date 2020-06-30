@@ -2,6 +2,8 @@ package com.arithmos.rest.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -156,10 +158,22 @@ public class ExcelOutputServiceImpl implements ExcelOutputService {
 
 			}
 
+			File file = new File(System.getProperty("user.home") + "\\Arithmos");
+			if (!(file.exists())) {
+				file.mkdir();
+			}
+			
+			File Excelfile = new File(System.getProperty("user.home") + "\\Arithmos\\Report.xlsx");
+			if (!(file.exists())) {
+				file.createNewFile();
+			}
+
+			FileOutputStream out = new FileOutputStream(Excelfile);
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			workbook.write(outputStream);
+			workbook.write(out);
 			outputStream.close();
 			workbook.close();
+			out.close();
 			return new ByteArrayInputStream(outputStream.toByteArray());
 		} catch (IOException ex) {
 			ex.printStackTrace();
