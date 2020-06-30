@@ -88,4 +88,8 @@ export class ReportComponent implements OnInit {
       this.isAdmin = true;
     }
   }
+
+  onDelete(data: number){
+    this.itemsArray.splice(data,1);
+  }
 }

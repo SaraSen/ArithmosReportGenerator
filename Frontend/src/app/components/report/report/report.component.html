@@ -76,8 +76,9 @@
           <mat-form-field class="example-full-width">
             <mat-label>Status</mat-label>
             <mat-select formControlName="status" [(ngModel)]="report.status">
-              <mat-option value="yes">YES</mat-option>
-              <mat-option value="no">NO</mat-option>
+              <mat-option value="in progress">In Progress</mat-option>
+              <mat-option value="completed">Completed</mat-option>
+              <mat-option value="on hold">On Hold</mat-option>
             </mat-select>
           </mat-form-field>
           <div class="w-100"></div>
@@ -86,7 +87,11 @@
             <textarea matInput formControlName="blockers" [(ngModel)]="report.blockers"></textarea>
           </mat-form-field>
           <div class="w-100"></div>
-          <button mat-raised-button color="primary" [disabled]="!reportForm.valid" (click)="resetForm()">Add Task</button>
+          <div class="row justify-content-md-center">
+            <button mat-raised-button color="primary" [disabled]="!reportForm.valid" (click)="resetForm()">Add Task</button>
+            <button mat-raised-button color="warn" type="reset" style="margin-left: 3%;">Clear</button>
+          </div>
+         
         </div>
       </form>
     </div>
@@ -108,10 +113,11 @@
                 <th>Delivery Date</th>
                 <th>Status</th>
                 <th>Blockers</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let data of itemsArray">
+              <tr *ngFor="let data of itemsArray; let i = index">
                 <td>{{data[0].value}}</td>
                 <td>{{data[1].value}}</td>
                 <td>{{data[2].value}}</td>
@@ -121,6 +127,11 @@
                 <td>{{data[6].value | date: 'dd/MM/yyyy'}}</td>
                 <td>{{data[7].value}}</td>
                 <td>{{data[8].value}}</td>
+                <td>
+                  <button mat-icon-button color="warn" (click)="onDelete(i)">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </td>
               </tr>
             </tbody>
           </table>
@@ -129,7 +140,6 @@
       <div class="w-100"></div>
       <div class="row justify-content-md-center">
         <button mat-raised-button color="primary" *ngIf="hasValues" (click)="submitReport()" type="submit">Submit</button>
-        <button mat-raised-button color="warn" *ngIf="hasValues" type="reset" style="margin-left: 2%;">Clear</button>
       </div>
     </div>
   </div>
