@@ -46,7 +46,7 @@ export class ReportGeneratorComponent implements OnInit {
     this.reportService.downloadReport(map).
       subscribe((resp: Blob) => {
         console.log(resp)
-        saveAs(resp, `filename.xlsx`)
+        saveAs(resp, `Status_Rreport.xlsx`)
       });
   }
 }
