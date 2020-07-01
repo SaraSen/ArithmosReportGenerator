@@ -10,7 +10,7 @@ import com.arithmos.rest.model.User;
 import com.arithmos.rest.service.UserService;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(path = "/employees")
 public class UserController {
 

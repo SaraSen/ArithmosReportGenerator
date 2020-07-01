@@ -17,7 +17,7 @@ import com.google.gson.JsonObject;
 
 @RestController
 @RequestMapping(path = "/employees")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ReportController {
 
 	@Autowired
