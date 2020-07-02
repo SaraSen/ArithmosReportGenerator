@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ReportService {
 
-  baseUrl = "http://localhost:8080/employees";
+  baseUrl = "http://localhost:8080/report";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,4 +26,11 @@ export class ReportService {
     return this.httpClient.post(`${this.baseUrl}/pushreport`, reports);
   }
 
+  getReport(map:any): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/viewReport`,map);
+  }
+
+  getReportByTeam(map:any): Observable<any>{
+    return this.httpClient.post(`${this.baseUrl}/viewReportByTeam`,map);
+  }
 }

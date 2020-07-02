@@ -45,7 +45,7 @@ public class ExcelDAO {
 		return jdbcTemplate.query(
 				"SELECT * FROM task where date between '" + formatDate(dateRange.get("startDate")) + "' and '"
 						+ formatDate(dateRange.get("endDate")) + "'",
-				(rs, rowNum) -> new Report(rs.getString("date"), rs.getString("Team"), rs.getString("Assignee"),
+				(rs, rowNum) -> new Report(rs.getDate("date"), rs.getString("Team"), rs.getString("Assignee"),
 						rs.getString("JiraID"), rs.getString("Description"), rs.getString("Comments"),
 						rs.getString("OnCall"), rs.getString("Delivery_date"), rs.getString("Status"),
 						rs.getString("Blockers")));

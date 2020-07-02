@@ -1,13 +1,15 @@
 package com.arithmos.rest.model;
 
+import java.util.Date;
+
 public class Report {
 
 	public Report() {
 
 	}
 
-	public Report(String date, String team, String assignee, String jiraID, String taskDesc, String comment,
-			String onCall, String deliveryDate, String status, String blockers) {
+	public Report(Date date, String team, String assignee, String jiraID, String taskDesc, String comment,
+				  String onCall, String deliveryDate, String status, String blockers) {
 
 		super();
 
@@ -24,7 +26,7 @@ public class Report {
 
 	}
 
-	private String date;
+	private Date date;
 	private String team;
 	private String assignee;
 	private String jiraID;
@@ -43,11 +45,11 @@ public class Report {
 		this.assignee = assignee;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

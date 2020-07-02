@@ -15,24 +15,76 @@
 
 <h2 class="text-center">Generate Report</h2>
 <br>
-
-<form [formGroup]="reportGenerateForm" (ngSubmit)="onSubmit()">
-  <div class="row justify-content-md-center">
-  <mat-form-field appearance="fill">
-    <mat-label>From</mat-label>
-    <input matInput [matDatepicker]="picker1" formControlName="startDate" [(ngModel)]="startDate">
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
-  </mat-form-field>
-&nbsp;
-  <mat-form-field appearance="fill">
-    <mat-label>To</mat-label>
-    <input matInput [matDatepicker]="picker2" formControlName="endDate" [(ngModel)]="endDate">
-    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-    <mat-datepicker #picker2></mat-datepicker>
-  </mat-form-field>
+<div class="container">
+  <form [formGroup]="reportGenerateForm" (ngSubmit)="onSubmit()">
+    <div class="row justify-content-md-center">
+      <mat-form-field appearance="fill">
+        <mat-label>From</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="startDate" [(ngModel)]="startDate">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field appearance="fill">
+        <mat-label>To</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="endDate" [(ngModel)]="endDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="row justify-content-md-center">
+      <a class="btn btn-secondary btn-md active" role="button" aria-pressed="true" (click)="viewReport()">View
+        Report</a>
+      &nbsp;
+      <button mat-raised-button color="primary" type="submit">Download</button>
+    </div>
+  </form>
+  <br>
+  <div class="tab" *ngIf="showTable">
+    <div class="row justify-content-md-center">
+      <button class="tablinks" (click)="showInfrastructure()">Infrastructure</button>
+      <button class="tablinks" (click)="showDevQa()">DEVQA</button>
+      <button class="tablinks" (click)="showSvoc()">SVOC</button>
+    </div>
   </div>
-  <div class="row justify-content-md-center">
-    <button mat-raised-button color="primary" type="submit">Download</button>
-  </div>
-</form>
+  <table *ngIf="showTable" mat-table [dataSource]="tableDataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="team">
+      <th mat-header-cell *matHeaderCellDef> Team </th>
+      <td mat-cell *matCellDef="let element"> {{element.team}} </td>
+    </ng-container>
+    <ng-container matColumnDef="assignee">
+      <th mat-header-cell *matHeaderCellDef> Assignee </th>
+      <td mat-cell *matCellDef="let element"> {{element.assignee}} </td>
+    </ng-container>
+    <ng-container matColumnDef="jiraID">
+      <th mat-header-cell *matHeaderCellDef> Jira ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.jiraID}} </td>
+    </ng-container>
+    <ng-container matColumnDef="taskDesc">
+      <th mat-header-cell *matHeaderCellDef> Task Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.taskDesc}} </td>
+    </ng-container>
+    <ng-container matColumnDef="comment">
+      <th mat-header-cell *matHeaderCellDef> Comment </th>
+      <td mat-cell *matCellDef="let element"> {{element.comment}} </td>
+    </ng-container>
+    <ng-container matColumnDef="onCall">
+      <th mat-header-cell *matHeaderCellDef> On Call </th>
+      <td mat-cell *matCellDef="let element"> {{element.onCall}} </td>
+    </ng-container>
+    <ng-container matColumnDef="deliveryDate">
+      <th mat-header-cell *matHeaderCellDef> Delivery Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.deliveryDate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+    <ng-container matColumnDef="blockers">
+      <th mat-header-cell *matHeaderCellDef> Blockers </th>
+      <td mat-cell *matCellDef="let element"> {{element.blockers}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
