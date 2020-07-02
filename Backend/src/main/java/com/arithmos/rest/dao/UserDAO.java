@@ -1,14 +1,12 @@
 package com.arithmos.rest.dao;
 
 import com.arithmos.rest.model.User;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.Optional;
-
-import org.apache.commons.codec.digest.DigestUtils;
 
 @Repository
 public class UserDAO {
@@ -32,9 +30,7 @@ public class UserDAO {
 
                             ))
             );
-            
-//            System.out.println(DigestUtils.md5Hex(userLoggedIn.get().getPassword()));
-//            System.out.println(DigestUtils.md5Hex(user.getPassword()));
+
             
             if (userLoggedIn.get().getPassword().equals(DigestUtils.md5Hex(user.getPassword())) &&
                     userLoggedIn.get().getUsername().equals(user.getUsername())) {
@@ -43,7 +39,8 @@ public class UserDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-		return null;
+
     }
 }

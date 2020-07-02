@@ -10,7 +10,7 @@ import { ReportGeneratorComponent } from './components/report-generator/report-g
 const routes: Routes = [
   { path: '', component: ReportComponent,canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent },
-  {path:'report-generator',component:ReportGeneratorComponent},
+  {path:'report-generator',component:ReportGeneratorComponent,canActivate:[AuthGuard]},
   { path: '**', redirectTo: '' }
 ];
 

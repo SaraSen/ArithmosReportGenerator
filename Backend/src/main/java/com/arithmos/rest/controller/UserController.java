@@ -1,15 +1,13 @@
 package com.arithmos.rest.controller;
 
+import com.arithmos.rest.model.User;
+import com.arithmos.rest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import com.arithmos.rest.dao.UserDAO;
-import com.arithmos.rest.model.User;
-import com.arithmos.rest.service.UserService;
 
-@Controller
+@RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(path = "/employees")
 public class UserController {

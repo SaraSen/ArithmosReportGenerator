@@ -11,7 +11,7 @@ export class RegistrationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   
-  baseUrl ="http://localhost:8080/employees";
+  baseUrl ="http://18.237.246.125:8080/employees";
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
   USER_NAME_SESSION_ATTRIBUTE_ROLE = 'authenticatedRole'
 

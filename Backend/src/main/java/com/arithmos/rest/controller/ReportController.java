@@ -13,30 +13,25 @@ import com.arithmos.rest.model.Report;
 import com.arithmos.rest.service.ReportService;
 
 @RestController
-<<<<<<< Updated upstream
-@RequestMapping(path = "/employees")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-=======
 @RequestMapping(path = "/report")
-@CrossOrigin(origins = "http://localhost:4200")
->>>>>>> Stashed changes
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ReportController {
 
 	@Autowired
-
 	private ReportService reportservice;
 
 	@PostMapping(path = "/pushreport", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<String> pushReport(@RequestBody List<Report> report) throws Exception {
+
 		return new ResponseEntity<String>(reportservice.pushReport(report).toString(), HttpStatus.OK);
 	}
 
 	@PostMapping(path = "/viewReport")
     public ResponseEntity<List<Report>> getReport(@RequestBody Map<String, Date> dateMap){
 	    try{
-	    	System.out.println(dateMap);
+
 	    	List<Report> reports = reportservice.getReport(dateMap);
-			System.out.println(reports);
+
 	        return new ResponseEntity<>(reports,HttpStatus.OK);
         }catch (Exception e){
 	    	e.printStackTrace();
@@ -63,7 +58,7 @@ public class ReportController {
 			Date dates1=new SimpleDateFormat("yyyy-MM-dd").parse(output1);
 			Date dates2=new SimpleDateFormat("yyyy-MM-dd").parse(output2);
 
-            System.out.println("aaa "+date1);
+
 			List<Report> reports = reportservice.getReportByTeam(map.get("team"),dates1,dates2);
 			return new ResponseEntity<>(reports,HttpStatus.OK);
 		}catch (Exception e){

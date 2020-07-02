@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ReportService {
 
-  baseUrl = "http://localhost:8080/report";
+  baseUrl = "http://18.237.246.125:8080/report";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class ReportService {
 
   downloadReport(map: any): Observable<Object> {
     console.log(map)
-    return this.httpClient.post('http://localhost:8080/download/tasks', map, { responseType: 'blob' });
+    return this.httpClient.post('http://18.237.246.125:8080/download/tasks', map, { responseType: 'blob' });
   }
 
   sendReport(reports: Object[]): Observable<Object> {
